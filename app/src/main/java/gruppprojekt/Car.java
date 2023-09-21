@@ -5,6 +5,8 @@ public class Car {
 
     Engine engine;
 
+    private int speed = 0;
+
     public Car() {
         this.light = new Light(false, "HALF", false);
         this.engine = new Engine(false);
@@ -32,4 +34,11 @@ public class Car {
         return engine;
     }
 
+    public int getSpeed() {
+        return  speed;
+    }
+
+    public void accelerate(int i) {
+        speed += i;
+    }
 }

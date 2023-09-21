@@ -93,4 +93,18 @@ public class CarTest {
         assertFalse(car.getLight().getFrontLightStatus());
         assertFalse(car.getLight().getBackLightStatus());
     }
+
+    @Test
+    void CarTest_WaringLightsOnEngineOff(){
+        car.stopEngine();
+        car.getLight().warningLightsOn();
+        assertTrue(car.getLight().getWarningLightsStatus());
+    }
+
+    @Test
+    void CarTest_Accelerate(){
+        int initialSpeed = car.getSpeed();
+        car.accelerate(1);
+        assertTrue(car.getSpeed() > initialSpeed);
+    }
 }

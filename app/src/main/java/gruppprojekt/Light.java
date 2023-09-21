@@ -5,6 +5,7 @@ public class Light {
     private String frontLightMode;
 
     private boolean backLightStatus;
+    private boolean warningLights = false;
 
     public Light(boolean lightStatus, String lightMode, boolean backLightStatus) {
         this.backLightStatus = backLightStatus;
@@ -61,5 +62,16 @@ public class Light {
     public void allLightsOff(){
         backLightsOff();
         frontLightsOff();
+    }
+
+    public void warningLightsOn() {
+        warningLights = true;
+    }
+    public void warningLightsOff() {
+        warningLights = false;
+    }
+
+    public boolean getWarningLightsStatus() {
+        return warningLights;
     }
 }
