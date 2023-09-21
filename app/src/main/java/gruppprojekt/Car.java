@@ -4,7 +4,7 @@ public class Car {
     Light light;
 
     public Car() {
-        this.light = new Light(true, "HALF");
+        this.light = new Light(true, "HALF", true);
     }
 
     public Light getLight() {

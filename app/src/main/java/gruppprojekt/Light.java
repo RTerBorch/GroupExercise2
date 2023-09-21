@@ -1,42 +1,56 @@
 package gruppprojekt;
 
 public class Light {
-    private boolean lightStatus;
-    private String lightMode;
+    private boolean frontLightStatus;
+    private String frontLightMode;
 
-    public Light(boolean lightStatus, String lightMode) {
+    private boolean backLightStatus;
+
+    public Light(boolean lightStatus, String lightMode, boolean backLightStatus) {
+        this.backLightStatus = backLightStatus;
         lightStatus = lightStatus;
-        this.lightMode = lightMode;
+        this.frontLightMode = lightMode;
     }
 
     public void turnOnLights() {
-        lightStatus = true;
+        frontLightStatus = true;
     }
 
     public void turnOffLights() {
-        lightStatus = false;
+        frontLightStatus = false;
     }
 
     public void switchLightMode() {
-        if (lightMode.equals("HALF")) {
-            lightMode = "FULL";
+        if (frontLightMode.equals("HALF")) {
+            frontLightMode = "FULL";
         } else {
-            lightMode = "HALF";
+            frontLightMode = "HALF";
         }
     }
 
-    public boolean getLightStatus() {
-        return lightStatus;
+    public boolean getFrontLightStatus() {
+        return frontLightStatus;
     }
 
 
-    public String getLightMode() {
-        return lightMode;
+    public String getFrontLightMode() {
+        return frontLightMode;
     }
 
-    public void setLightMode(String lightMode) {
-        this.lightMode = lightMode;
+    public void setFrontLightMode(String frontLightMode) {
+        this.frontLightMode = frontLightMode;
     }
 
 
+    public void backLightsOn() {
+        backLightStatus = true;
+    }
+
+    public void backLightsOff() {
+        backLightStatus = false;
+    }
+
+    public boolean backLightStatus() {
+        return backLightStatus;
+    }
 }
