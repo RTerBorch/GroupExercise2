@@ -1,6 +1,6 @@
 # TDD-Uppgift-GruppX
 
-- Gruppnamn: [Ert Gruppnamn]
+- Gruppnamn: [REPS]
 - Medlemmar:
 - [Robin]
 - [Erik]
