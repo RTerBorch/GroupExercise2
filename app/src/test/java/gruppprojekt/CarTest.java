@@ -67,4 +67,16 @@ public class CarTest {
         car.getLight().backLightsOff();
         assertEquals(car.getLight().backLightStatus(), false);
     }
+
+    @Test
+    void CarTest_EngineOn(){
+        car.getEngine().startEngine();
+        assertTrue(car.getEngine().getEngineStatus());
+    }
+
+    @Test
+    void CarTest_EngineOff(){
+        car.getEngine().stopEngine();
+        assertFalse(car.getEngine().getEngineStatus());
+    }
 }
