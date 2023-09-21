@@ -11,11 +11,7 @@ public class Engine {
         return engineStatus;
     }
 
-    public void stopEngine() {
-        engineStatus = false;
-    }
-
-    public void startEngine() {
-        engineStatus = true;
+    public void setEngineStatus(boolean engineStatus) {
+        this.engineStatus = engineStatus;
     }
 }

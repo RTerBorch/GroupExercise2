@@ -6,8 +6,18 @@ public class Car {
     Engine engine;
 
     public Car() {
-        this.light = new Light(true, "HALF", true);
+        this.light = new Light(false, "HALF", false);
         this.engine = new Engine(false);
+    }
+
+    public void stopEngine() {
+        engine.setEngineStatus(false);
+        light.frontLightsOff();
+        light.backLightsOff();
+    }
+
+    public void startEngine() {
+        engine.setEngineStatus(true);
     }
 
     public Light getLight() {
@@ -21,4 +31,5 @@ public class Car {
     public Engine getEngine() {
         return engine;
     }
+
 }

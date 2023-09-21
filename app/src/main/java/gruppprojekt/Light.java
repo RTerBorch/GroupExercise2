@@ -12,11 +12,11 @@ public class Light {
         this.frontLightMode = lightMode;
     }
 
-    public void turnOnLights() {
+    public void frontLightsOn() {
         frontLightStatus = true;
     }
 
-    public void turnOffLights() {
+    public void frontLightsOff() {
         frontLightStatus = false;
     }
 
@@ -50,7 +50,16 @@ public class Light {
         backLightStatus = false;
     }
 
-    public boolean backLightStatus() {
+    public boolean getBackLightStatus() {
         return backLightStatus;
+    }
+
+    public void allLightsOn() {
+        backLightsOn();
+        frontLightsOn();
+    }
+    public void allLightsOff(){
+        backLightsOff();
+        frontLightsOff();
     }
 }
