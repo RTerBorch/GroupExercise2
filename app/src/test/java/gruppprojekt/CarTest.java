@@ -22,7 +22,7 @@ public class CarTest {
 
     @Test
     void carTest_lightsExists() {
-      //  car.setLight(true);
+        //  car.setLight(true);
         assertNotNull(car.getLight());
     }
 
@@ -39,7 +39,22 @@ public class CarTest {
     }
 
     @Test
-    void CarTest_LightModeDefault(){
-       assertEquals(car.getLight().getLightMode(),"HALF");
+    void CarTest_LightModeDefault() {
+        assertEquals(car.getLight().getLightMode(), "HALF");
     }
+
+    @Test
+    void CarTest_LightModeFull() {
+        car.getLight().switchLightMode();
+        assertEquals(car.getLight().getLightMode(), "FULL");
+    }
+
+    @Test
+    void CarTest_LightModeHalf() {
+        car.getLight().switchLightMode();
+        car.getLight().switchLightMode();
+        assertEquals(car.getLight().getLightMode(), "HALF");
+    }
+
+
 }

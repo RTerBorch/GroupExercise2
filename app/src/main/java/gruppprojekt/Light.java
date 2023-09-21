@@ -9,18 +9,25 @@ public class Light {
         this.lightMode = lightMode;
     }
 
-    public void turnOnLights(){
+    public void turnOnLights() {
         lightStatus = true;
     }
 
-    public void turnOffLights(){
+    public void turnOffLights() {
         lightStatus = false;
     }
 
-    public boolean getLightStatus() {
-        return  lightStatus;
+    public void switchLightMode() {
+        if (lightMode.equals("HALF")) {
+            lightMode = "FULL";
+        } else {
+            lightMode = "HALF";
+        }
     }
 
+    public boolean getLightStatus() {
+        return lightStatus;
+    }
 
 
     public String getLightMode() {
@@ -30,4 +37,6 @@ public class Light {
     public void setLightMode(String lightMode) {
         this.lightMode = lightMode;
     }
+
+
 }
