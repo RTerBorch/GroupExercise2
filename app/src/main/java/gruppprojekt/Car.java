@@ -44,4 +44,8 @@ public class Car {
             speed = 180;
         }
     }
+
+    public void brake(int i) {
+        speed -= i;
+    }
 }
