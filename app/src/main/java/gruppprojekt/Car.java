@@ -44,12 +44,20 @@ public class Car {
         if (speed > 180){
             speed = 180;
         }
+        if (i > 0){
+            getLight().turnOffBrakeLight();
+        }
     }
 
     public void brake(int i) {
         speed -= i;
         if (speed < 0){
             speed = 0;
+        }
+        if (i > 0){
+            getLight().turnOnBrakeLight();
+        } else {
+            getLight().turnOffBrakeLight();
         }
     }
 
@@ -64,4 +72,5 @@ public class Car {
     public void reverseMode() {
         isReverse = true;
     }
+
 }

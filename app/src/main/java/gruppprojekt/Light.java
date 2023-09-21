@@ -4,12 +4,15 @@ public class Light {
     private boolean frontLightStatus;
     private String frontLightMode;
 
+
+
     private boolean backLightStatus;
     private boolean warningLights = false;
+    private boolean brakeLight = false;
 
-    public Light(boolean lightStatus, String lightMode, boolean backLightStatus) {
+    public Light(boolean frontLightStatus, String lightMode, boolean backLightStatus) {
         this.backLightStatus = backLightStatus;
-        lightStatus = lightStatus;
+        this.frontLightStatus = frontLightStatus;
         this.frontLightMode = lightMode;
     }
 
@@ -73,5 +76,16 @@ public class Light {
 
     public boolean getWarningLightsStatus() {
         return warningLights;
+    }
+
+    public boolean getbrakeLightsStatus() {
+        return brakeLight;
+    }
+
+    public void turnOnBrakeLight( ) {
+        brakeLight = true;
+    }
+    public void turnOffBrakeLight( ) {
+        brakeLight = false;
     }
 }
