@@ -36,25 +36,41 @@ public class Car {
     }
 
     public int getSpeed() {
-        return  speed;
+        return speed;
     }
 
     public void accelerate(int i) {
-        speed += i;
-        if (speed > 180){
-            speed = 180;
+        if (!isReverse) {
+            speed += i;
+            if (speed > 180) {
+                speed = 180;
+            }
+        } else {
+            speed -= i;
+            if (speed < -180) {
+                speed = -180;
+            }
         }
-        if (i > 0){
+
+
+        if (i > 0) {
             getLight().turnOffBrakeLight();
         }
     }
 
     public void brake(int i) {
-        speed -= i;
-        if (speed < 0){
-            speed = 0;
+        if (!isReverse) {
+            speed -= i;
+            if (speed < 0) {
+                speed = 0;
+            }
+        }else {
+            speed += i;
+            if (speed > 0) {
+                speed = 0;
+            }
         }
-        if (i > 0){
+        if (i > 0) {
             getLight().turnOnBrakeLight();
         } else {
             getLight().turnOffBrakeLight();

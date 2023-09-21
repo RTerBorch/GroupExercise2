@@ -154,5 +154,14 @@ public class CarTest {
         car.brake(0);
         assertFalse(car.getLight().getbrakeLightsStatus());
     }
+    @Test
+    void CarTest_ReverseBrake(){
+
+        car.reverseMode();
+        car.accelerate(90);
+        car.brake(100);
+        assertEquals(car.getSpeed(), 0);
+
+    }
 
 }
