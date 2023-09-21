@@ -56,38 +56,38 @@ public class CarTest {
     }
 
     @Test
-    void CarTest_BacklightOn(){
+    void CarTest_BacklightOn() {
         car.getLight().backLightsOn();
         assertEquals(car.getLight().getBackLightStatus(), true);
     }
 
     @Test
-    void CarTest_BacklightOff(){
+    void CarTest_BacklightOff() {
         car.getLight().backLightsOff();
         assertEquals(car.getLight().getBackLightStatus(), false);
     }
 
     @Test
-    void CarTest_EngineOn(){
+    void CarTest_EngineOn() {
         car.startEngine();
         assertTrue(car.getEngine().getEngineStatus());
     }
 
     @Test
-    void CarTest_EngineOff(){
+    void CarTest_EngineOff() {
         car.stopEngine();
         assertFalse(car.getEngine().getEngineStatus());
     }
 
     @Test
-    void CarTest_AllLightsOn(){
+    void CarTest_AllLightsOn() {
         car.getLight().allLightsOn();
         assertTrue(car.getLight().getFrontLightStatus());
         assertTrue(car.getLight().getBackLightStatus());
     }
 
     @Test
-    void CarTest_EngineOffAllLightsOff(){
+    void CarTest_EngineOffAllLightsOff() {
         car.getLight().allLightsOn();
         car.stopEngine();
         assertFalse(car.getLight().getFrontLightStatus());
@@ -95,16 +95,29 @@ public class CarTest {
     }
 
     @Test
-    void CarTest_WaringLightsOnEngineOff(){
+    void CarTest_WaringLightsOnEngineOff() {
         car.stopEngine();
         car.getLight().warningLightsOn();
         assertTrue(car.getLight().getWarningLightsStatus());
     }
 
     @Test
-    void CarTest_Accelerate(){
+    void CarTest_Accelerate() {
         int initialSpeed = car.getSpeed();
         car.accelerate(1);
         assertTrue(car.getSpeed() > initialSpeed);
     }
+
+    @Test
+    void CarTest_InitialSpeed() {
+        assertEquals(car.getSpeed(), 0);
+    }
+    @Test
+    void CarTest_SpeedMax180() {
+        car.accelerate(200);
+        assertEquals(car.getSpeed(), 180);
+
+    }
+
+
 }
