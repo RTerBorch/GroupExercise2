@@ -112,20 +112,23 @@ public class CarTest {
     void CarTest_InitialSpeed() {
         assertEquals(car.getSpeed(), 0);
     }
+
     @Test
     void CarTest_SpeedMax180() {
         car.accelerate(200);
         assertEquals(car.getSpeed(), 180);
     }
+
     @Test
     void CarTest_Brake() {
         car.accelerate(50);
         car.brake(50);
         assertEquals(car.getSpeed(), 0);
     }
+
     @Test
-    void CarTest_BrakeReverse() {
+    void CarTest_BrakeNotNegative() {
         car.brake(50);
-        assertEquals(car.getSpeed(), -50);
+        assertEquals(car.getSpeed(), 0);
     }
 }

@@ -47,5 +47,8 @@ public class Car {
 
     public void brake(int i) {
         speed -= i;
+        if (speed < 0){
+            speed = 0;
+        }
     }
 }
