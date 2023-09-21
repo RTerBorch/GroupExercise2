@@ -123,7 +123,9 @@ public class CarTest {
         car.brake(50);
         assertEquals(car.getSpeed(), 0);
     }
-
-
-
+    @Test
+    void CarTest_BrakeReverse() {
+        car.brake(50);
+        assertEquals(car.getSpeed(), -50);
+    }
 }
