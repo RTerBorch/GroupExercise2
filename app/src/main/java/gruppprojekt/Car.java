@@ -1,21 +1,17 @@
 package gruppprojekt;
 
 public class Car {
-    Light light = new Light();
+    Light light;
 
-    public boolean getLight() {
+    public Car() {
+        this.light = new Light(true, "HALF");
+    }
+
+    public Light getLight() {
         return light;
     }
 
-    public void setLight(boolean light) {
+    public void setLight(Light light) {
         this.light = light;
     }
-
-    public Car(boolean light) {
-        this.light = light;
-    }
-    public Car() {
-    }
-
-
 }

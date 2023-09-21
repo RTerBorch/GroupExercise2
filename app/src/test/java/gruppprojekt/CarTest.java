@@ -28,27 +28,18 @@ public class CarTest {
 
     @Test
     void CarTest_LightsOn() {
-        car.setLight(true);
-        assertTrue(car.getLight());
+        car.getLight().turnOnLights();
+        assertTrue(car.getLight().getLightStatus());
     }
 
     @Test
     void CarTest_LightsOff() {
-        car.setLight(false);
-        assertFalse(car.getLight());
+        car.getLight().turnOffLights();
+        assertFalse(car.getLight().getLightStatus());
     }
 
     @Test
-    void CarTest_HasLightModeHalf(){
-       assertEquals(car.getLightMode(),"HALF");
-
-        {
-
-        }
+    void CarTest_LightModeDefault(){
+       assertEquals(car.getLight().getLightMode(),"HALF");
     }
-
-
-
-
-
 }
