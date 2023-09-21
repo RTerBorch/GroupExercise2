@@ -6,6 +6,7 @@ public class Car {
     Engine engine;
 
     private int speed = 0;
+    private boolean isReverse = false;
 
     public Car() {
         this.light = new Light(false, "HALF", false);
@@ -50,5 +51,17 @@ public class Car {
         if (speed < 0){
             speed = 0;
         }
+    }
+
+    public boolean getReverseStatus() {
+        return isReverse;
+    }
+
+    public void driveMode() {
+        isReverse = false;
+    }
+
+    public void reverseMode() {
+        isReverse = true;
     }
 }
