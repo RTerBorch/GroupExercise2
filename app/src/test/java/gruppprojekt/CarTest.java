@@ -277,10 +277,11 @@ public class CarTest {
     }
 
     @Test
-    void CarTest_CarChargerWithoutCars(){
+    void CarTest_ChargeFull(){
+        assertEquals(car.getBattery().getPower(), 1000);
+        carCharger.connect(car);
         carCharger.charge();
+        assertEquals(car.getBattery().getPower(), 1000);
     }
-
-
-
+    
 }

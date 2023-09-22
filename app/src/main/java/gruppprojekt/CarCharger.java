@@ -15,8 +15,12 @@ public class CarCharger {
         if(carList.isEmpty()){
             System.out.println("No cars connected");
         }
-        carList.forEach(car ->
-                car.getBattery()
-                        .charge(chargeCapacity/carList.size()));
+        carList.forEach(car -> {
+            if(!(car.getBattery().isFull())){
+                car.getBattery().charge(chargeCapacity / carList.size());
+            } else {
+                System.out.println("Fully charged battery");
+            }
+        });
     }
 }

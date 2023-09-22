@@ -3,10 +3,12 @@ package gruppprojekt;
 public class Battery {
 
     private int power;
+    private boolean fullCharge;
     Light light;
 
     public Battery(int power) {
         this.power = power;
+        this.fullCharge = true;
     }
 
     public double getPower() {
@@ -15,6 +17,7 @@ public class Battery {
 
     public void setPower(int powerIn) {
         power = powerIn;
+        fullCharge = power >= 1000;
         if(power <= 50){
             light.allLightsOff();
         }
@@ -33,5 +36,9 @@ public class Battery {
 
     public void charge(int i) {
         setPower(power += i);
+    }
+
+    public boolean isFull() {
+        return fullCharge;
     }
 }
