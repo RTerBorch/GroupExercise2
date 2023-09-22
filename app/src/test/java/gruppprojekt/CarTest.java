@@ -3,19 +3,17 @@ package gruppprojekt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTest {
 
     Car car;
+    CarCharger carCharger;
 
     @BeforeEach
     public void setupCar() {
         this.car = new Car();
+        this.carCharger = new CarCharger();
     }
 
     @Test
@@ -239,6 +237,14 @@ public class CarTest {
         assertEquals(car.getBattery().getPower(), 50);
         car.getBattery().charge(50);
         assertEquals(car.getBattery().getPower(), 100);
+    }
+
+    @Test
+    void CarTest_ChargeCar(){
+        car.getBattery().consumption(-950);
+        assertEquals(car.getBattery().getPower(), 50);
+        carCharger.charge(car.getBattery(), 2);
+        assertEquals(car.getBattery().getPower(), 52);
     }
 
 }
