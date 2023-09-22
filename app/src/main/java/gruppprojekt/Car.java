@@ -9,12 +9,13 @@ public class Car {
     private boolean isReverse = false;
 
     public Car() {
-        this.battery = new Battery(100);
+        this.battery = new Battery(1000);
         this.light = new Light( false,
                                     "HALF",
-                                false,
-                                            this.battery);
+                                false);
         this.engine = new Engine(false);
+        light.setBattery(battery);
+        battery.setLight(light);
 
     }
 
@@ -62,7 +63,7 @@ public class Car {
                 speed = -180;
             }
         }
-        battery.setPower(-1);
+        battery.consumption(-10);
     }
 
     public void brake(int i) {

@@ -12,17 +12,18 @@ public class Light {
 
     public Light(boolean frontLightStatus,
                  String lightMode,
-                 boolean backLightStatus,
-                 Battery battery) {
+                 boolean backLightStatus) {
         this.backLightStatus = backLightStatus;
         this.frontLightStatus = frontLightStatus;
         this.frontLightMode = lightMode;
-        this.battery = battery;
     }
 
     public void frontLightsOn() {
+        if(battery.getPower() <= 0){
+            return;
+        }
         frontLightStatus = true;
-        battery.setPower(-0.1);
+        battery.consumption(-1);
     }
 
     public void frontLightsOff() {
@@ -52,8 +53,11 @@ public class Light {
 
 
     public void backLightsOn() {
+        if(battery.getPower() <= 0){
+            return;
+        }
         backLightStatus = true;
-        battery.setPower(-0.1);
+        battery.consumption(-1);
     }
 
     public void backLightsOff() {
@@ -76,7 +80,10 @@ public class Light {
 
 
     public void warningLightsOn() {
-        battery.setPower(-0.1);
+        if(battery.getPower() <= 0){
+            return;
+        }
+        battery.consumption(-1);
         warningLights = true;
     }
     public void warningLightsOff() {
@@ -92,9 +99,16 @@ public class Light {
     }
 
     public void turnOnBrakeLight( ) {
+        if(battery.getPower() <= 0){
+            return;
+        }
         brakeLight = true;
     }
     public void turnOffBrakeLight( ) {
         brakeLight = false;
+    }
+
+    public void setBattery(Battery battery) {
+        this.battery = battery;
     }
 }

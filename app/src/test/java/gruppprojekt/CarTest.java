@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CarTest {
@@ -166,19 +169,20 @@ public class CarTest {
 
     @Test
     void CarTest_BatteryExists(){
-        assertEquals(car.getBattery().getPower(), 100);
+        assertEquals(car.getBattery().getPower(), 1000);
     }
 
     @Test
     void CarTest_BatteryDrainDrive(){
         car.accelerate(20);
-        assertNotEquals(car.getBattery().getPower(), 100);
+        assertNotEquals(car.getBattery().getPower(), 1000);
     }
 
     @Test
     void CarTest_BatteryDrainLights(){
         car.getLight().allLightsOn();
-        assertNotEquals(car.getBattery().getPower(), 100);
+        assertNotEquals(car.getBattery().getPower(), 1000);
+        assertEquals(car.getBattery().getPower(), 998);
     }
 
     @Test
@@ -188,6 +192,30 @@ public class CarTest {
         car.getBattery().setPower(0);
         car.accelerate(20);
         assertEquals(startSpeed, car.getSpeed());
+    }
+
+    @Test
+    void CarTest_BatteryConsumptionAllLightsOff(){
+        assertEquals(car.getBattery().getPower(), 1000);
+        car.getLight().allLightsOn();
+        car.getBattery().consumption(-998);
+        assertEquals(car.getBattery().getPower(), 0);
+        assertFalse(car.getLight().getBackLightStatus());
+        assertFalse(car.getLight().getbrakeLightsStatus());
+        assertFalse(car.getLight().getFrontLightStatus());
+        assertFalse(car.getLight().getWarningLightsStatus());
+    }
+
+
+    @Test
+    void CarTest_BatteryEmptyAllLightsAreOff(){
+        car.getLight().allLightsOn();
+        car.getBattery().setPower(0);
+        car.getLight().allLightsOn();
+        assertFalse(car.getLight().getBackLightStatus());
+        assertFalse(car.getLight().getbrakeLightsStatus());
+        assertFalse(car.getLight().getFrontLightStatus());
+        assertFalse(car.getLight().getWarningLightsStatus());
     }
 
 }
