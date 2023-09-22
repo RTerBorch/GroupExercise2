@@ -5,6 +5,7 @@ public class Car {
 
     Engine engine;
 
+    private int batteryStatus = 100;
     private int speed = 0;
     private boolean isReverse = false;
 
@@ -89,4 +90,7 @@ public class Car {
         isReverse = true;
     }
 
+    public int getBattery() {
+        return batteryStatus;
+    }
 }

@@ -164,4 +164,9 @@ public class CarTest {
 
     }
 
+    @Test
+    void CarTest_BatteryExists(){
+        assertNotNull(car.getBattery());
+    }
+
 }
