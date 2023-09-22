@@ -243,19 +243,42 @@ public class CarTest {
     void CarTest_ChargeCar(){
         car.getBattery().consumption(-950);
         assertEquals(car.getBattery().getPower(), 50);
-        carCharger.charge(car.getBattery());
-        assertEquals(car.getBattery().getPower(), 52);
+        carCharger.connect(car);
+        carCharger.charge();
+        assertEquals(car.getBattery().getPower(), 110);
     }
 
     @Test
-    void CarTest_ChargeSeveralCars(){
+    void CarTest_ChargeTwoCars(){
         car.getBattery().consumption(-950);
         Car car2 = new Car();
         car2.getBattery().consumption(-850);
-        carCharger.charge(car.getBattery());
-        carCharger.charge(car2.getBattery());
-        assertEquals(car.getBattery().getPower(), 52);
-        assertEquals(car2.getBattery().getPower(), 152);
+        carCharger.connect(car);
+        carCharger.connect(car2);
+        carCharger.charge();
+        assertEquals(car.getBattery().getPower(), 80);
+        assertEquals(car2.getBattery().getPower(), 180);
+    }
+
+    @Test
+    void CarTest_ChargeThreeCars(){
+        car.getBattery().consumption(-950);
+        Car car2 = new Car();
+        car2.getBattery().consumption(-850);
+        Car car3 = new Car();
+        car3.getBattery().consumption(-850);
+        carCharger.connect(car);
+        carCharger.connect(car2);
+        carCharger.connect(car3);
+        carCharger.charge();
+        assertEquals(car.getBattery().getPower(), 70);
+        assertEquals(car2.getBattery().getPower(), 170);
+        assertEquals(car3.getBattery().getPower(), 170);
+    }
+
+    @Test
+    void CarTest_CarChargerWithoutCars(){
+        carCharger.charge();
     }
 
 
