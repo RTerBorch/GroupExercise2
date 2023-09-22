@@ -289,7 +289,7 @@ public class CarTest {
         car.getBattery().consumption(180);
         carCharger.connect(car);
         carCharger.charge();
-        assertEquals(car.getMessage(), "3 Iterations left");
+        assertEquals(car.getMessage(), "2 Iterations left");
     }
 
     @Test
@@ -300,8 +300,51 @@ public class CarTest {
         carCharger.connect(car);
         carCharger.connect(car2);
         carCharger.charge();
-        assertEquals(car.getMessage(), "4 Iterations left");
+        assertEquals(car.getMessage(), "3 Iterations left");
+        assertEquals(car2.getMessage(), "1 Iterations left");
+    }
+
+    @Test
+    void CarTest_ChargeCostOneCar(){
+        car.getBattery().consumption(120);
+        carCharger.connect(car);
+        carCharger.charge();
+        assertEquals(car.getMessage(), "1 Iterations left");
+        carCharger.charge();
+        assertEquals(car.getMessage(), "Fully charged, Cost: 240");
+    }
+
+    @Test
+    void CarTest_ChargeSeveralCars(){
+        car.getBattery().consumption(120);
+        carCharger.connect(car);
+        Car car2 = new Car();
+        Car car3 = new Car();
+        car2.getBattery().consumption(60);
+        car3.getBattery().consumption(20);
+        carCharger.connect(car2);
+        carCharger.connect(car3);
+        carCharger.charge();
+
+        assertEquals(car.getMessage(), "5 Iterations left");
         assertEquals(car2.getMessage(), "2 Iterations left");
+        assertEquals(car3.getMessage(), "Fully charged, Cost: 40");
+
+        //Only 2 cars left, so charging more everytime.
+        carCharger.charge();
+
+        assertEquals(car.getMessage(), "3 Iterations left");
+        assertEquals(car2.getMessage(), "1 Iterations left");
+        assertEquals(car3.getMessage(), "Fully charged, Cost: 40");
+
+        carCharger.charge();
+
+        assertEquals(car.getMessage(), "2 Iterations left");
+        assertEquals(car2.getMessage(), "Fully charged, Cost: 120");
+        assertEquals(car3.getMessage(), "Fully charged, Cost: 40");
+
+        assertEquals(car2.getBattery().getPower(), car2.getBattery().getMaxPower());
+        assertEquals(car3.getBattery().getPower(), car3.getBattery().getMaxPower());
     }
 
 }
