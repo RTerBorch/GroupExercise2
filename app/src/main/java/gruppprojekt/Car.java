@@ -45,6 +45,12 @@ public class Car {
     }
 
     public void accelerate(int i) {
+        if (i > 0) {
+            getLight().turnOffBrakeLight();
+        }
+        if(battery.getPower() <= 0){
+            return;
+        }
         if (!isReverse) {
             speed += i;
             if (speed > 180) {
@@ -55,9 +61,6 @@ public class Car {
             if (speed < -180) {
                 speed = -180;
             }
-        }
-        if (i > 0) {
-            getLight().turnOffBrakeLight();
         }
         battery.setPower(-1);
     }

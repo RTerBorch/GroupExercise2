@@ -181,4 +181,13 @@ public class CarTest {
         assertNotEquals(car.getBattery().getPower(), 100);
     }
 
+    @Test
+    void CarTest_BatteryEmptyNoAccelerate(){
+        car.accelerate(100);
+        int startSpeed = car.getSpeed();
+        car.getBattery().setPower(0);
+        car.accelerate(20);
+        assertEquals(startSpeed, car.getSpeed());
+    }
+
 }
