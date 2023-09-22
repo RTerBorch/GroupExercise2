@@ -243,8 +243,21 @@ public class CarTest {
     void CarTest_ChargeCar(){
         car.getBattery().consumption(-950);
         assertEquals(car.getBattery().getPower(), 50);
-        carCharger.charge(car.getBattery(), 2);
+        carCharger.charge(car.getBattery());
         assertEquals(car.getBattery().getPower(), 52);
     }
+
+    @Test
+    void CarTest_ChargeSeveralCars(){
+        car.getBattery().consumption(-950);
+        Car car2 = new Car();
+        car2.getBattery().consumption(-850);
+        carCharger.charge(car.getBattery());
+        carCharger.charge(car2.getBattery());
+        assertEquals(car.getBattery().getPower(), 52);
+        assertEquals(car2.getBattery().getPower(), 152);
+    }
+
+
 
 }
