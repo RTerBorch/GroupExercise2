@@ -3,21 +3,26 @@ package gruppprojekt;
 public class Light {
     private boolean frontLightStatus;
     private String frontLightMode;
-
-
-
     private boolean backLightStatus;
     private boolean warningLights = false;
     private boolean brakeLight = false;
 
-    public Light(boolean frontLightStatus, String lightMode, boolean backLightStatus) {
+    Battery battery;
+
+
+    public Light(boolean frontLightStatus,
+                 String lightMode,
+                 boolean backLightStatus,
+                 Battery battery) {
         this.backLightStatus = backLightStatus;
         this.frontLightStatus = frontLightStatus;
         this.frontLightMode = lightMode;
+        this.battery = battery;
     }
 
     public void frontLightsOn() {
         frontLightStatus = true;
+        battery.setPower(-0.1);
     }
 
     public void frontLightsOff() {
@@ -48,14 +53,11 @@ public class Light {
 
     public void backLightsOn() {
         backLightStatus = true;
+        battery.setPower(-0.1);
     }
 
     public void backLightsOff() {
         backLightStatus = false;
-    }
-
-    public boolean getBackLightStatus() {
-        return backLightStatus;
     }
 
     public void allLightsOn() {
@@ -67,7 +69,14 @@ public class Light {
         frontLightsOff();
     }
 
+    public boolean getBackLightStatus() {
+        return backLightStatus;
+    }
+
+
+
     public void warningLightsOn() {
+        battery.setPower(-0.1);
         warningLights = true;
     }
     public void warningLightsOff() {

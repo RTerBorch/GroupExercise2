@@ -2,16 +2,20 @@ package gruppprojekt;
 
 public class Car {
     Light light;
-
     Engine engine;
 
-    private int batteryStatus = 100;
+    private final Battery battery;
     private int speed = 0;
     private boolean isReverse = false;
 
     public Car() {
-        this.light = new Light(false, "HALF", false);
+        this.battery = new Battery(100);
+        this.light = new Light( false,
+                                    "HALF",
+                                false,
+                                            this.battery);
         this.engine = new Engine(false);
+
     }
 
     public void stopEngine() {
@@ -55,7 +59,7 @@ public class Car {
         if (i > 0) {
             getLight().turnOffBrakeLight();
         }
-        batteryStatus -= 1;
+        battery.setPower(-1);
     }
 
     public void brake(int i) {
@@ -89,7 +93,7 @@ public class Car {
         isReverse = true;
     }
 
-    public int getBattery() {
-        return batteryStatus;
+    public Battery getBattery() {
+        return battery;
     }
 }
