@@ -49,7 +49,7 @@ public class Car {
         if (i > 0) {
             getLight().turnOffBrakeLight();
         }
-        if(battery.getPower() <= 0){
+        if(battery.getPower() <= 50){
             return;
         }
         if (!isReverse) {

@@ -209,13 +209,28 @@ public class CarTest {
 
     @Test
     void CarTest_BatteryEmptyAllLightsAreOff(){
-        car.getLight().allLightsOn();
         car.getBattery().setPower(0);
         car.getLight().allLightsOn();
         assertFalse(car.getLight().getBackLightStatus());
         assertFalse(car.getLight().getbrakeLightsStatus());
         assertFalse(car.getLight().getFrontLightStatus());
         assertFalse(car.getLight().getWarningLightsStatus());
+    }
+
+    @Test
+    void CarTest_BatteryEmptyWorkingHazards(){
+        car.getBattery().consumption(-950);
+        car.getLight().allLightsOn();
+        assertEquals(car.getBattery().getPower(), 50);
+        car.getLight().warningLightsOn();
+        assertFalse(car.getLight().getBackLightStatus());
+        assertFalse(car.getLight().getbrakeLightsStatus());
+        assertFalse(car.getLight().getFrontLightStatus());
+        assertTrue(car.getLight().getWarningLightsStatus());
+        car.getLight().warningLightsOff();
+        car.getLight().warningLightsOn();
+        assertTrue(car.getLight().getWarningLightsStatus());
+        assertEquals(car.getBattery().getPower(), 48);
     }
 
 }

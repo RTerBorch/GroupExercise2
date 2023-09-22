@@ -15,9 +15,11 @@ public class Battery {
 
     public void setPower(int powerIn) {
         power = powerIn;
-        if(power <= 0){
+        if(power <= 50){
             light.allLightsOff();
-            power = 0;
+        }
+        if(power <= 0){
+            light.warningLightsOff();
         }
     }
 
@@ -25,7 +27,7 @@ public class Battery {
         this.light = light;
     }
 
-    public void consumption(int consumption){
-        setPower(power+=consumption);
+    public void consumption(int consumption) {
+        setPower(power += consumption);
     }
 }

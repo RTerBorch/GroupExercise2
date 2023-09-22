@@ -19,7 +19,7 @@ public class Light {
     }
 
     public void frontLightsOn() {
-        if(battery.getPower() <= 0){
+        if(battery.getPower() <= 50){
             return;
         }
         frontLightStatus = true;
@@ -53,7 +53,7 @@ public class Light {
 
 
     public void backLightsOn() {
-        if(battery.getPower() <= 0){
+        if(battery.getPower() <= 50){
             return;
         }
         backLightStatus = true;
@@ -67,10 +67,12 @@ public class Light {
     public void allLightsOn() {
         backLightsOn();
         frontLightsOn();
+        turnOnBrakeLight();
     }
     public void allLightsOff(){
         backLightsOff();
         frontLightsOff();
+        turnOffBrakeLight();
     }
 
     public boolean getBackLightStatus() {
@@ -99,7 +101,7 @@ public class Light {
     }
 
     public void turnOnBrakeLight( ) {
-        if(battery.getPower() <= 0){
+        if(battery.getPower() <= 50){
             return;
         }
         brakeLight = true;
