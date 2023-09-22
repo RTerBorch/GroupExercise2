@@ -233,4 +233,12 @@ public class CarTest {
         assertEquals(car.getBattery().getPower(), 48);
     }
 
+    @Test
+    void CarTest_BatteryCharge(){
+        car.getBattery().consumption(-950);
+        assertEquals(car.getBattery().getPower(), 50);
+        car.getBattery().charge(50);
+        assertEquals(car.getBattery().getPower(), 100);
+    }
+
 }

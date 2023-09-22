@@ -30,4 +30,8 @@ public class Battery {
     public void consumption(int consumption) {
         setPower(power += consumption);
     }
+
+    public void charge(int i) {
+        setPower(power += i);
+    }
 }
