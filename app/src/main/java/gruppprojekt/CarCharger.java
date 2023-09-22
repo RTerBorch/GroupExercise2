@@ -1,5 +1,6 @@
 package gruppprojekt;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CarCharger {
@@ -12,14 +13,18 @@ public class CarCharger {
     }
 
     public void charge(){
+        int chargeAmount = chargeCapacity / carList.size();
         if(carList.isEmpty()){
             System.out.println("No cars connected");
         }
         carList.forEach(car -> {
             if(!(car.getBattery().isFull())){
-                car.getBattery().charge(chargeCapacity / carList.size());
+                double amountToCharge = car.getBattery().getMaxPower() - car.getBattery().getPower();
+                double amounts = amountToCharge / chargeAmount;
+                car.setMessage( (int) Math.ceil(amounts) + " Iterations left");
+                car.getBattery().charge(chargeAmount);
             } else {
-                System.out.println("Fully charged battery");
+                System.out.println("Battery fully charged");
             }
         });
     }

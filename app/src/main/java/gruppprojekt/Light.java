@@ -23,7 +23,7 @@ public class Light {
             return;
         }
         frontLightStatus = true;
-        battery.consumption(-1);
+        battery.consumption(1);
     }
 
     public void frontLightsOff() {
@@ -57,7 +57,7 @@ public class Light {
             return;
         }
         backLightStatus = true;
-        battery.consumption(-1);
+        battery.consumption(1);
     }
 
     public void backLightsOff() {
@@ -85,7 +85,7 @@ public class Light {
         if(battery.getPower() <= 0){
             return;
         }
-        battery.consumption(-1);
+        battery.consumption(1);
         warningLights = true;
     }
     public void warningLightsOff() {

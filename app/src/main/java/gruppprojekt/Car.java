@@ -4,6 +4,8 @@ public class Car {
     Light light;
     Engine engine;
 
+    private String message;
+
     private final Battery battery;
     private int speed = 0;
     private boolean isReverse = false;
@@ -99,5 +101,13 @@ public class Car {
 
     public Battery getBattery() {
         return battery;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

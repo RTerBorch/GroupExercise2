@@ -6,6 +6,8 @@ public class Battery {
     private boolean fullCharge;
     Light light;
 
+    private final int maxPower = 1000;
+
     public Battery(int power) {
         this.power = power;
         this.fullCharge = true;
@@ -31,7 +33,7 @@ public class Battery {
     }
 
     public void consumption(int consumption) {
-        setPower(power += consumption);
+        setPower(power -= consumption);
     }
 
     public void charge(int i) {
@@ -40,5 +42,9 @@ public class Battery {
 
     public boolean isFull() {
         return fullCharge;
+    }
+
+    public int getMaxPower(){
+        return maxPower;
     }
 }

@@ -196,7 +196,7 @@ public class CarTest {
     void CarTest_BatteryConsumptionAllLightsOff(){
         assertEquals(car.getBattery().getPower(), 1000);
         car.getLight().allLightsOn();
-        car.getBattery().consumption(-998);
+        car.getBattery().consumption(998);
         assertEquals(car.getBattery().getPower(), 0);
         assertFalse(car.getLight().getBackLightStatus());
         assertFalse(car.getLight().getbrakeLightsStatus());
@@ -217,7 +217,7 @@ public class CarTest {
 
     @Test
     void CarTest_BatteryEmptyWorkingHazards(){
-        car.getBattery().consumption(-950);
+        car.getBattery().consumption(950);
         car.getLight().allLightsOn();
         assertEquals(car.getBattery().getPower(), 50);
         car.getLight().warningLightsOn();
@@ -233,7 +233,7 @@ public class CarTest {
 
     @Test
     void CarTest_BatteryCharge(){
-        car.getBattery().consumption(-950);
+        car.getBattery().consumption(950);
         assertEquals(car.getBattery().getPower(), 50);
         car.getBattery().charge(50);
         assertEquals(car.getBattery().getPower(), 100);
@@ -241,7 +241,7 @@ public class CarTest {
 
     @Test
     void CarTest_ChargeCar(){
-        car.getBattery().consumption(-950);
+        car.getBattery().consumption(950);
         assertEquals(car.getBattery().getPower(), 50);
         carCharger.connect(car);
         carCharger.charge();
@@ -250,9 +250,9 @@ public class CarTest {
 
     @Test
     void CarTest_ChargeTwoCars(){
-        car.getBattery().consumption(-950);
+        car.getBattery().consumption(950);
         Car car2 = new Car();
-        car2.getBattery().consumption(-850);
+        car2.getBattery().consumption(850);
         carCharger.connect(car);
         carCharger.connect(car2);
         carCharger.charge();
@@ -262,11 +262,11 @@ public class CarTest {
 
     @Test
     void CarTest_ChargeThreeCars(){
-        car.getBattery().consumption(-950);
+        car.getBattery().consumption(950);
         Car car2 = new Car();
-        car2.getBattery().consumption(-850);
+        car2.getBattery().consumption(850);
         Car car3 = new Car();
-        car3.getBattery().consumption(-850);
+        car3.getBattery().consumption(850);
         carCharger.connect(car);
         carCharger.connect(car2);
         carCharger.connect(car3);
@@ -283,5 +283,25 @@ public class CarTest {
         carCharger.charge();
         assertEquals(car.getBattery().getPower(), 1000);
     }
-    
+
+    @Test
+    void CarTest_ChargeIterationLeft(){
+        car.getBattery().consumption(180);
+        carCharger.connect(car);
+        carCharger.charge();
+        assertEquals(car.getMessage(), "3 Iterations left");
+    }
+
+    @Test
+    void CarTest_ChargeTwoCarsIterationsLeft(){
+        car.getBattery().consumption(120);
+        Car car2 = new Car();
+        car2.getBattery().consumption(60);
+        carCharger.connect(car);
+        carCharger.connect(car2);
+        carCharger.charge();
+        assertEquals(car.getMessage(), "4 Iterations left");
+        assertEquals(car2.getMessage(), "2 Iterations left");
+    }
+
 }
