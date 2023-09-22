@@ -166,7 +166,13 @@ public class CarTest {
 
     @Test
     void CarTest_BatteryExists(){
-        assertNotNull(car.getBattery());
+        assertEquals(car.getBattery(), 100);
+    }
+
+    @Test
+    void CarTest_BatteryDrainDrive(){
+        car.accelerate(20);
+        assertNotEquals(car.getBattery(), 100);
     }
 
 }

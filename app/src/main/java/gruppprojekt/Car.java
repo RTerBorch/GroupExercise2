@@ -52,11 +52,10 @@ public class Car {
                 speed = -180;
             }
         }
-
-
         if (i > 0) {
             getLight().turnOffBrakeLight();
         }
+        batteryStatus -= 1;
     }
 
     public void brake(int i) {
