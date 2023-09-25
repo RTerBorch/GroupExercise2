@@ -35,10 +35,6 @@ public class Car {
         return light;
     }
 
-    public void setLight(Light light) {
-        this.light = light;
-    }
-
     public Engine getEngine() {
         return engine;
     }

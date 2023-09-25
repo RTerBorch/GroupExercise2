@@ -110,6 +110,14 @@ public class CarTest {
     }
 
     @Test
+    void CarTest_TurnOffBrakeLights() {
+        car.getLight().allLightsOn();
+        assertTrue(car.getLight().getbrakeLightsStatus());
+        car.accelerate(-1);
+        assertTrue(car.getLight().getbrakeLightsStatus());
+    }
+
+    @Test
     void CarTest_InitialSpeed() {
         assertEquals(car.getSpeed(), 0);
     }
@@ -145,6 +153,20 @@ public class CarTest {
     }
 
     @Test
+    void CarTest_ReverseAccelerate(){
+        car.reverseMode();
+        car.accelerate(100);
+        assertEquals(car.getSpeed(),-100);
+    }
+
+    @Test
+    void CarTest_ReverseMaxAccelerate(){
+        car.reverseMode();
+        car.accelerate(190);
+        assertEquals(car.getSpeed(),-180);
+    }
+
+    @Test
     void CarTest_BrakeLightsOn(){
         car.brake(5);
         assertTrue(car.getLight().getbrakeLightsStatus());
@@ -157,7 +179,6 @@ public class CarTest {
     }
     @Test
     void CarTest_ReverseBrake(){
-
         car.reverseMode();
         car.accelerate(90);
         car.brake(100);
